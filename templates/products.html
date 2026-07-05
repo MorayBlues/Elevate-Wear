@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread & Sole, Products.</title>
+  </head>
+  <body>
+    {% for product in products %}
+
+    <div class="product_cards">
+      <div class="card_info">
+        <div class="product">
+          <p>Name: {{ product[1] }}</p>
+          <p>Price: {{ product[2] }}</p>
+          <p>Category: {{ product[3] }}</p>
+          <p>Subcategory: {{ product[4] }}</p>
+          <img src="{{ product[5] }}" alt="{{ product[1] }}" />
+          <a href="products/{{ product[0] }}">View Details</a>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </body>
+</html>

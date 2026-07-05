@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread & Sole, Product_Details.</title>
+  </head>
+  <body>
+    <div class="product_cards">
+      <div class="card_info">
+        <div class="product">
+          <p>Name: {{ product[2] }}</p>
+          <p>Price: {{ product[3] }}</p>
+          <p>Description: {{ product[4] }}</p>
+          <p>Category: {{ product[6] }}</p>
+          <p>subcategory: {{ product[7] }}</p>
+        </div>
+      </div>
+    </div>
+
+    {% for variant in variants %}
+
+    <div class="product_variants">
+      <div class="variant">
+        <p>Size: {{ variant[2] }}</p>
+        <p>Color: {{ variant[3] }}</p>
+        <p>Availability: {{ variant[4] }}</p>
+      </div>
+    </div>
+    {% endfor %} {% for image in images %}
+
+    <div class="product_images">
+      <div class="images">
+        <img src="{{ image[2] }}" alt="product image" />
+      </div>
+    </div>
+    {% endfor %}
+
+    <a
+      href="https://wa.me/254790261909?text=Hello, I'm interested in {{ product[2] }}"
+      class="whatsapp_button"
+      >Place An Order</a
+    >
+  </body>
+</html>
