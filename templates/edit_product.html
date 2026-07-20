@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread & Sole, Products.</title>
+  </head>
+  <body>
+    <div class="prefilled_form">
+        <form action="/admin/products/{{ product[0] }}/edit" method="post">
+            Name:
+           <input type="text" name="name" id="name" value="{{ product[2] }}">
+           Price:
+           <input type="number" name="price" id="price" value="{{ product[3] }}">
+           Description:
+           <input type="text" name="description" id="description" value="{{ product[4] }}">
+            Categories Id:
+           <select name="categories_id">
+           {% for category in categories %}
+           <option value="{{ category[0] }}" {% if category[0] == product[5] %}selected{% endif %}>
+           {{ category[1] }} / {{ category[2] }}
+           </option>
+           {% endfor %}
+           </select>
+           <button type="submit">Save Changes</button>
+        </form>
+    </div>
+  </body>
+</html>

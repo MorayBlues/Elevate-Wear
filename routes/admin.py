@@ -2,7 +2,8 @@ from flask import Blueprint
 from flask import request
 from auth import verify_admin
 from auth import login_required
-from flask import session
+from flask import session, redirect, url_for
+from flask import render_template
 import psycopg2
 from db import get_db
 admin = Blueprint('admin',__name__)
@@ -90,3 +91,66 @@ def add_product():
             <button type="submit">Add Product</button>
         </form>    
         '''
+    
+@admin.route('/admin/orders')
+@login_required
+def orders():
+            conn = get_db()
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM orders;")
+            results = cur.fetchall()
+            return render_template('orders.html', orders = results)
+
+@admin.route('/admin/orders/<int:order_id>', methods=['POST'])
+@login_required
+def update_order(order_id):
+     conn = get_db()
+     cur = conn.cursor()
+     status = request.form['status']
+     cur.execute("UPDATE orders SET status = %s WHERE id = %s;",(status, order_id))
+     conn.commit()
+     return redirect(url_for('admin.orders')) 
+
+@admin.route('/admin/products')
+@login_required
+def products_listing_view():
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT products.id, products.name, products.price, categories.category, categories.subcategory, images.image_url FROM products JOIN categories ON products.categories_id = categories.id JOIN images ON images.products_id = products.id WHERE images.is_cover = true;")
+    results = cur.fetchall()
+    return render_template('Admin-products.html', products=results)
+
+@admin.route('/admin/products/<int:product_id>', methods=['POST'])
+@login_required
+def delete_product(product_id):
+     conn = get_db()
+     cur = conn.cursor()
+     cur.execute("DELETE FROM products WHERE  id = %s;",(product_id,))
+     conn.commit()
+     return redirect(url_for('admin.products_listing_view'))
+
+@admin.route('/admin/products/<int:product_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_product(product_id):
+     conn = get_db()
+     cur = conn.cursor()
+     if request.method == 'GET':
+          cur.execute("SELECT * FROM products JOIN categories ON products.categories_id = categories.id WHERE products.id = %s;",(product_id,))
+          product = cur.fetchone()
+          cur.execute("SELECT * FROM categories;")
+          categories = cur.fetchall()
+          return render_template('edit_product.html', product=product, categories=categories)
+          
+     else:
+          name = request.form['name']
+          price = request.form['price']
+          description = request.form['description']
+          categories_id = request.form['categories_id']
+          try:
+               cur.execute("UPDATE products SET name = %s, price = %s, description = %s, categories_id = %s WHERE id = %s;",(name, price, description, categories_id, product_id))
+               conn.commit()
+               return redirect(url_for('admin.products_listing_view'))
+          except psycopg2.Error as e:
+            conn.rollback()
+            return f"Failed to Edit product: {e}"
+        

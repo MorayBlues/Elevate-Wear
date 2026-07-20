@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread & Sole, orders.</title>
+  </head>
+  <body>
+    {% for order in orders %}
+
+    <div class="order_card">
+      <div class="card_info">
+        <div class="order">
+          <p>Order id:{{ order[0] }}</p>
+          <p>Variants id:{{ order[1] }}</p>
+          <p>Customer Name:{{ order[2] }}</p>
+          <p>Customer Phone:{{ order[3] }}</p>
+          <p>Number Of Items:{{ order[4] }}</p>
+          <form action="/admin/orders/{{ order[0] }}" method="post">
+            <select name="status" id="status">
+              <option value="pending" {% if order[5] == 'pending' %}selected{% endif %}>Pending</option>
+              <option value="contacted" {% if order[5] == 'contacted' %}selected{% endif %}>Contacted</option>
+              <option value="cancelled" {% if order[5] == 'cancelled' %}selected{% endif %}>Cancelled</option>
+              <option value="fulfilled" {% if order[5] == 'fulfilled' %}selected{% endif %}>Fulfilled</option>
+            </select>
+            <button type="submit">Update Status</button>
+          </form>
+          <p>Price:{{ order[6] }}</p>
+          <p>Product Name:{{ order[7] }}</p>
+          <p>Product Size:{{ order[8] }}</p>
+          <p>Product Color:{{ order[9] }}</p>
+          <p>Time ordered:{{ order[10] }}</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </body>
+</html>
