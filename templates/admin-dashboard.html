@@ -1,0 +1,15 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+<div class="heading">
+    <h1>Welcome To Thread & Sole Dashboard</h1>
+</div>
+<div class="product_count">
+    <h2>Products On The Market</h2>
+        <p>{{ product_count }}</p>
+</div>
+<div class="pending_order_count">
+    <h2>Orders Awaiting Confirmation</h2>
+        <p>{{ pending_order_count}}</p>
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@ from auth import verify_admin
 from auth import login_required
 from flask import session, redirect, url_for
 from flask import render_template
+from cloudinary_upload import upload_image
 import psycopg2
 from db import get_db
 admin = Blueprint('admin',__name__)
@@ -16,27 +17,29 @@ def login():
         
         if verify_admin(user,password):
             session['admin_logged_in'] = True
-            return "Login successful"
+            return redirect(url_for('admin.dashboard'))
         else:
-            return "Invalid username or password"
+             return render_template('login.html', error="Invalid Username or Password")
     else:
-        return '''
-        <form method="post">
-        <input name ="username" placeholder="username">
-        <input name ="password" type="password" placeholder="password">
-        <button type="submit">Login</button>
-        </form>
-        '''
+        return render_template('login.html')
 
 @admin.route('/admin/logout')
 def logout():
     session.pop('admin_logged_in', None)
-    return "Logged out"
+    return render_template('index.html')
 
 @admin.route('/admin/dashboard')
 @login_required
 def dashboard():
-    return "Welcome to the dashboard"
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM products")
+    products = cur.fetchone()
+    product_count = products[0]
+    cur.execute("SELECT COUNT(*) FROM orders WHERE status = 'pending';")
+    orders = cur.fetchone()
+    pending_order_count = orders[0]
+    return render_template('admin-dashboard.html', product_count = product_count, pending_order_count = pending_order_count)
 
 @admin.route('/admin/products/add', methods=['GET', 'POST'])
 @login_required
@@ -49,7 +52,7 @@ def add_product():
         description = request.form['description']
         category = request.form['category']
         subcategory = request.form['subcategory']
-        image_urls = request.form.getlist('image_url[]')
+        image_files = request.files.getlist('image_file[]')
         sizes = request.form.getlist('size[]')
         colors =request.form.getlist('color[]')
         try:
@@ -64,9 +67,14 @@ def add_product():
             result = cur.fetchone()
             product_id = result[0]
 
-            for index, url in enumerate(image_urls):
-                is_cover = (index == 0)
-                cur.execute("INSERT INTO images(products_id, image_url, is_cover) VALUES(%s, %s, %s);", (product_id, url, is_cover))
+            cover_image_set = False
+            for file in image_files:
+                 if file.filename == '':
+                      continue
+                 image_url = upload_image(file)
+                 is_cover = not cover_image_set
+                 cur.execute("INSERT INTO images(products_id, image_url, is_cover) VALUES(%s, %s, %s);",(product_id, image_url, is_cover))
+                 cover_image_set = True
 
             for size, color in zip(sizes, colors):
                 cur.execute("INSERT INTO variants(products_id, size, color, availability_flag) VALUES(%s, %s, %s, %s);", (product_id, size, color, True))
@@ -77,20 +85,7 @@ def add_product():
             conn.rollback()
             return f"Failed to add product: {e}"
     else:
-        return '''
-        <form method="POST">
-            Name: <input name ="name"><br>
-            Price: <input name="price"><br>
-            Description: <input name="description"><br>
-            Category: <input name="category"><br>
-            Subcategory: <input name="subcategory"><br>
-            Image URL 1: <input name="image_url[]"><br>
-            Image URL 2: <input name="image_url[]"><br>
-            Size 1: <input name="size[]"> Color 1: <input name="color[]"><br>
-            Size 2: <input name="size[]"> Color 2: <input name="color[]"><br>
-            <button type="submit">Add Product</button>
-        </form>    
-        '''
+        return render_template('add-product.html')
     
 @admin.route('/admin/orders')
 @login_required
@@ -153,4 +148,3 @@ def edit_product(product_id):
           except psycopg2.Error as e:
             conn.rollback()
             return f"Failed to Edit product: {e}"
-        

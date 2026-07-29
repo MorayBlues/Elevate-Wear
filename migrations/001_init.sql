@@ -19,4 +19,6 @@ CREATE TABLE admin_users(id SERIAL PRIMARY KEY, user_name VARCHAR(25) NOT NULL, 
 
 -- SELECT products.id, products.name, products.price, categories.category, categories.subcategory, images.image_url FROM products JOIN categories ON products.categories_id = categories.id JOIN images ON images.products_id = products.id WHERE images.is_cover = true ORDER BY products.id DESC LIMIT 4;
 
-SELECT user_name FROM admin_users;
+-- SELECT user_name FROM admin_users;
+SELECT COUNT(*) FROM products;
+SELECT COUNT(*) FROM orders WHERE status = 'pending';

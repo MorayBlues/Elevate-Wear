@@ -1,0 +1,25 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+      Name: <input name="name" /><br />
+      <br>
+      Price: <input name="price" /><br />
+      <br>
+      Description: <input name="description" /><br />
+      <br>
+      Category: <input name="category" /><br />
+      <br>
+      Subcategory: <input name="subcategory" /><br />
+      <br>
+      Image URL 1: <input type="file" name="image_file[]" /><br />
+      <br>
+      Image URL 2: <input type="file" name="image_file[]" /><br />
+      <br>
+      Size 1: <input name="size[]" /> Color 1: <input name="color[]" /><br />
+      <br>
+      Size 2: <input name="size[]" /> Color 2: <input name="color[]" /><br />
+      <br />
+      <button type="submit">Add Product</button>
+    </form>
+  {% endblock %}
