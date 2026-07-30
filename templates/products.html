@@ -1,9 +1,11 @@
 {% extends "base_customer.html" %}
 
 {% block content %}
+
+<div class="featured_products">
     {% for product in products %}
 
-    <div class="product_cards">
+    <div class="products_cards">
       <div class="card_info">
         <div class="product">
           <p>Name: {{ product[1] }}</p>
@@ -17,4 +19,5 @@
     </div>
 
     {% endfor %}
+</div>
   {% endblock %}

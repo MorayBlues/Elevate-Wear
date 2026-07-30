@@ -2,39 +2,57 @@
 
 {% block content %}
 
+<div class="product_layout">
+  <div class="product_info_column">
     <div class="product_cards">
       <div class="card_info">
         <div class="product">
-          <p>Name: {{ product[2] }}</p>
-          <p>Price: {{ product[3] }}</p>
-          <p>Description: {{ product[4] }}</p>
-          <p>Category: {{ product[6] }}</p>
-          <p>subcategory: {{ product[7] }}</p>
+          <h2 class="name">Name: {{ product[2] }}</h2>
+          <p class="price">Price: {{ product[3] }}</p>
+          <p class="cat">Category: {{ product[6] }}</p>
+          <p class="subcat">subcategory: {{ product[7] }}</p>
+          <p class="des">Description: {{ product[4] }}</p>
         </div>
       </div>
     </div>
 
-    {% for variant in variants %}
-
     <div class="product_variants">
+      {% for variant in variants %}
       <div class="variant">
-        <p>Size: {{ variant[2] }}</p>
-        <p>Color: {{ variant[3] }}</p>
-        <p>Availability: {{ variant[4] }}</p>
+        <p class="size">Size: {{ variant[2] }}</p>
+        <p class="color">Color: {{ variant[3] }}</p>
+        <p class="available">Availability: {% if variant[4] %} In Stock {% else %} Out of Stock {% endif %}</p>
       </div>
-    </div>
-    {% endfor %} {% for image in images %}
-
-    <div class="product_images">
-      <div class="images">
-        <img src="{{ image[2] }}" alt="product image" />
-      </div>
-    </div>
-    {% endfor %}
+    {% endfor %} 
 
     <a
       href="https://wa.me/254790261909?text=Hello, I'm interested in {{ product[2] }}"
       class="whatsapp_button"
-      >Place An Order</a
+      ><i class="fa-brands fa-whatsapp"></i>Place An Order</a
     >
+
+    </div>
+  </div>
+
+  <div class="product_image_column">
+    {% for image in images %}
+      {% if image[3] %}
+        <div class="product_cover">
+          <img src="{{ image[2] }}" alt="product cover image" class="img_fluid"/>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="product_thumbnails">
+      {% for image in images %}
+        {% if not image[3] %}
+          <div class="thumbnail">
+            <img src="{{ image[2] }}" alt="product gallery image" class="img_thumbnail"/>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
   {% endblock %}

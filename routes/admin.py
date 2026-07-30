@@ -80,7 +80,7 @@ def add_product():
                 cur.execute("INSERT INTO variants(products_id, size, color, availability_flag) VALUES(%s, %s, %s, %s);", (product_id, size, color, True))
 
             conn.commit()
-            return "Product added successfully"
+            return redirect(url_for('admin.add_product', success = "Product added successfully!"))
         except psycopg2.Error as e:
             conn.rollback()
             return f"Failed to add product: {e}"
