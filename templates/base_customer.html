@@ -12,31 +12,54 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/customer.css') }}">
 </head>
 <body>
-    <div class="navigation_wrapper">
     <div class="user_nav">
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/products">Products</a>
-        <a href="/contact">Contact Us</a>
-    </div>
+        <div class="nav_logo">
+            <a href="/">Thread & Sole</a>
+        </div>
+        <button class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="nav_links">
+           <a href="/">Home</a>
+           <a href="/about">About Us</a>
+           <a href="/products">Products</a>
+           <a href="/contact">Contact Us</a>
+        </div>
+        <div class="nav_phone">
+            <a href="https://wa.me/254790261909?text=Hello, I have a question about Thread&Sole." class="whatsapp_button">
+            <i class="fa-brands fa-whatsapp"></i>Message Us</a>
+        </div>   
     </div>
     {% block content %}{% endblock %}
     <footer>
+        <div class="footer_columns">
         <div class="footer_logo">Thread & Sole</div>
         <div class="footer_links">
+            <h3>Navigation Links</h3>
            <a href="/">Home</a>
            <a href="/about">About Us</a>
            <a href="/products">Products</a>
            <a href="/contact">Contact Us</a> 
         </div>
         <div class="footer_contact">
-            <p>Phone: +254790261909</p>
+            <h3>Contacts</h3>
+            <p>Phone: +254-790-261-909</p>
             <p>Email: Damianspears50@gmail.com</p>
         </div>
         <div class="footer_socials">
-            <!-- social icons -->
+            <h3>Social Links</h3>
+           <a href="#" class="social_link">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>@threadandsole</span>
+           </a>
+           <a href="#" class="social_link">
+            <i class="fa-brands fa-instagram"></i>
+            <span>@threadandsole</span>
+           </a>
         </div>
-        <p>&copy; 2026 Thread & Sole. All rights reserved.</p>
+        </div>
+        <p class="copyright">&copy; 2026 Thread & Sole. All rights reserved.</p>
     </footer>
+    <script src="{{ url_for('static', filename='JS/user.js') }}"></script>
 </body>
 </html>

@@ -1,33 +1,41 @@
 {% extends "base_customer.html" %}
 {% block content %}
+<div class="contact_layout">
     <div class="reach_out">
-        <div class="reachout_details">
         <div class="phone">
             <i class="fa-solid fa-phone"></i>
             +254-790-261-909
         </div>    
-        </div>
-        <div class="reachout_details">
-        <div class="email">
+        <div class="email">    
           <i class="fa-solid fa-envelope"></i>
           Damianspears50@gmail.com  
         </div>
+        <div class="tiktok">
+        <a href="#" class="social_link">    
+            <i class="fa-brands fa-tiktok"></i>
+            <span>@threadandsole</span>
+        </a>    
+        </div>
+        <div class="instagram">
+        <a href="#" class="social_link">     
+            <i class="fa-brands fa-instagram"></i>
+            <span>@threadandsole</span>
+        </a>    
         </div>
     </div>
 
     <div class="form"> 
     <form action="">  
-    Name:
+    <label for="name">Name:</label>
     <input type="text" id="name" name="name" placeholder="Samuel Otieno">
-    Phone:
-    <input type="tel" id="phone" name="phone" placeholder="+254 712 345 678">
-    Message:
-    <input type="text" id="message" name="message" placeholder="Any complains?, comments?, compliments? how we can searve you better? Let Us Know Here">
+    <label for="message">Message:</label>
+    <textarea type="text" id="message" name="message" placeholder="Any complains?, comments?, compliments? how we can searve you better? Let Us Know Here"></textarea>
      <a
       href="https://wa.me/254790261909?text="
       class="whatsapp_button"
-      >Send</a
+      ><i class="fa-brands fa-whatsapp"></i>Message Us</a
     >
     </form>
     </div> 
+</div>    
 {% endblock %}

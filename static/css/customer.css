@@ -58,6 +58,7 @@
     color: var(--color-primary);
     border: 1.5px solid var(--color-accent);
     border-radius: 10px;
+    padding: 1rem;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -157,6 +158,8 @@
 }
 
 .whatsapp_button {
+    display: inline-flex;
+    align-items: center;
     background-color: #25D366;
     color: var(--color-secondary);
     border-radius: 10px;
@@ -230,4 +233,297 @@ i.fa-whatsapp {
 }
 .contact a:hover {
     background-color: var(--color-accent);
+}
+
+ /* Contacts Page CSS */
+
+ .contact_layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    min-height: 60vh;
+    text-align: start;
+    padding: 2rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+ }
+
+ .reach_out {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;  
+ }
+
+.phone, .email, .social_link {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-accent);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0.5px 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.social_link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.phone:hover, .email:hover, .social_link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0.5px 6px 8px rgba(0,0,0,0.2);
+    border-color: var(--color-primary);
+}
+
+i.fa-instagram, i.fa-tiktok, i.fa-envelope, i.fa-phone {
+    font-size: 1.5rem;
+    display: flex;
+    margin-right: 0.5rem;
+    color: var(--color-accent);
+}
+.social_link .fa-instagram {
+    color: #E1306C;
+}
+.social_link .fa-tiktok {
+    color: #010101;
+}
+
+ label{
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    display: block;
+ }
+
+ input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+ }
+ input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+
+ }
+
+ textarea {
+    min-height: 150px;
+    resize: vertical;
+ }
+
+ /* Navigation Bar CSS */
+
+ .user_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--color-accent);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    margin-bottom: 1rem;
+ }
+ .nav_links {
+    display: flex;
+    gap: 1rem;
+ }
+.user_nav a {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem; 
+    transition: background-color 0.3s ease;
+}
+.user_nav a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+.user_nav a:hover::after {
+    width: 100%;
+}
+.user_nav a:hover {
+    color: var(--color-secondary);
+}
+.nav_logo a {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+.hamburger {
+    display: none;
+}
+.hamburger i {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+/* Footer CSS */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.footer_columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.footer_logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer_logo:hover {
+    color: var(--color-secondary);
+}
+.footer_links, .footer_contact, .footer_socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color 0.3s ease;
+}
+.footer_links a, .footer_contact a, .footer_socials a {
+    color: var(--color-secondary);
+    transition: color 0.3s ease;
+}
+.footer_links a:hover, .footer_contact a:hover, .footer_socials a:hover {
+    color: var(--color-accent);
+}
+footer .social_link {
+    display: flex;
+    flex-direction: row;
+    background-color: #555;
+    padding: 0.5rem;
+    border: 1px solid #333;
+}
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent);
+
+}
+
+/* Mobile Respinsiveness */
+
+@media (max-width: 768px) {
+
+    /* Nav media queries */
+
+    .user_nav {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .nav_links {
+        display: none;
+    }
+    .nav_links.nav_open {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        z-index: 999;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* About Us Media Queries */
+
+    .mission_vision_row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* product-details Media queries */
+    
+    .product_layout{
+        display: flex;
+        flex-direction: column;
+    }
+    .product_info_column, .product_image_column {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .whatsapp_button {
+        width: 100%;
+        font-size: 1.25rem;
+    }
+    .nav_phone .whatsapp_button {
+        margin-top: 1rem;
+    }
+
+    /* Footer Media Queries */
+
+    footer{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .footer_columns {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .footer_links, .footer_contact, .footer_socials {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 }
