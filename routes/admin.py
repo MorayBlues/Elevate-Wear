@@ -111,7 +111,7 @@ def update_order(order_id):
 def products_listing_view():
     conn = get_db()
     cur = conn.cursor()
-    cur.execute("SELECT products.id, products.name, products.price, categories.category, categories.subcategory, images.image_url FROM products JOIN categories ON products.categories_id = categories.id JOIN images ON images.products_id = products.id WHERE images.is_cover = true;")
+    cur.execute("SELECT products.id, products.name, products.price, products.description, categories.category, categories.subcategory, images.image_url FROM products JOIN categories ON products.categories_id = categories.id JOIN images ON images.products_id = products.id WHERE images.is_cover = true;")
     results = cur.fetchall()
     return render_template('Admin-products.html', products=results)
 

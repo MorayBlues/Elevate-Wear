@@ -1,25 +1,54 @@
 {% extends "base_admin.html" %}
-
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-      Name: <input name="name" /><br />
-      <br>
-      Price: <input name="price" /><br />
-      <br>
-      Description: <input name="description" /><br />
-      <br>
-      Category: <input name="category" /><br />
-      <br>
-      Subcategory: <input name="subcategory" /><br />
-      <br>
-      Image URL 1: <input type="file" name="image_file[]" /><br />
-      <br>
-      Image URL 2: <input type="file" name="image_file[]" /><br />
-      <br>
-      Size 1: <input name="size[]" /> Color 1: <input name="color[]" /><br />
-      <br>
-      Size 2: <input name="size[]" /> Color 2: <input name="color[]" /><br />
-      <br />
-      <button type="submit">Add Product</button>
-    </form>
+
+<div class="add_product_form">
+  <h1>Add Products</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form_row"> 
+      <div class="form_field"> 
+        <label for="name">Name:</label> 
+        <input name="name" id="name"/><br />
+      </div>
+      <div class="form_field">
+        <label for="price">Price:</label>
+        <input name="price" id="price" /><br />
+      </div>  
+    </div>
+    <div class="form_row">
+      <div class="form_field">
+        <label for="category">Category:</label> 
+        <input name="category" id="category"/><br />
+      </div>
+      <div class="form_field">
+        <label for="subcategory">Subcategory:</label> 
+        <input name="subcategory" id="subcategory" /><br />
+      </div>
+    </div>
+    <div id="variant_rows">
+    <div class="form_row">
+      <div class="form_field">
+        <label for="sizes">Sizes:</label> 
+        <input name="size[]" id="sizes" /> 
+      </div>
+      <div class="form_field">
+        <label for="colors">Colors:</label> 
+        <input name="color[]" id="colors" /><br />
+      </div>
+    </div>
+    </div>
+    <button type="button" id="add_variant_btn">Add Variant</button>
+    <div id="image_row">
+    <div class="form_row">
+      <label for="images">Image URL:</label>
+      <input type="file" name="image_file[]" id="images"/><br />
+    </div>
+    </div>
+    <button type="button" id="add_image_btn">Add Image</button>
+    <div class="form_row">
+      <label for="description">Description:</label> 
+      <textarea type="text" name="description" id="description"></textarea><br />
+    </div>
+    <button type="submit">Add Product</button>
+  </form>
+</div>   
   {% endblock %}

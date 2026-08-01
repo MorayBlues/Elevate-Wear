@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thread & Sole, Admin</title>
+    <title>Elevate Ware, Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -12,16 +12,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 <body>
-    <div class="navigation_wrapper">
+
         <div class="admin_nav">
+            <div class="nav_logo">
+            <a href="/">Elevate Ware</a>
+            </div>
+        <button class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="nav_links">
             <a href="/admin/login">Login</a>
             <a href="/admin/dashboard">Dashboard</a>
             <a href="/admin/products">Products</a>
             <a href="/admin/orders">Orders</a>
             <a href="/admin/products/add">Add Product</a>
+        </div>
+        <div class="nav_logout">
             <a href="/admin/logout">Logout</a>
         </div>
-    </div>
+        </div>
     {% block content %}{% endblock %}
+
+    <footer>
+        <p class="copyright">&copy; 2026 Elevate Ware. All rights reserved.</p>
+    </footer>
+<script src="{{ url_for('static', filename='JS/admin.js') }}"></script>
 </body>
 </html>

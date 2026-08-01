@@ -1,7 +1,21 @@
-{% extends "base_admin.html" %}
-{% block content %} 
-  {% if error %}
-     <p style="color: red">{{ error }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevate Ware, Admin Login.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="login_page">
+<div class="login_form">
+   <h1>Admin Login</h1>
+   {% if error %}
+     <p class="error">{{ error }}</p>
   {% endif %}
 <form action="" method="post">
   Username:<br />
@@ -12,4 +26,6 @@
   <br />
   <button type="submit">Login</button>
 </form>
-{% endblock %}
+</div>
+</body>
+</html>

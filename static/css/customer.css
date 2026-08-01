@@ -22,7 +22,7 @@
     transition: background-color 0.3s ease;
 }
 .btn:hover {
-    background-color: var(--color-secondary);   
+    background-color: #d75f09;   
 }
 
 .featured_products, .products_cards {
@@ -440,7 +440,7 @@ footer {
 footer .social_link {
     display: flex;
     flex-direction: row;
-    background-color: #555;
+    background-color: #1a1a1a;
     padding: 0.5rem;
     border: 1px solid #333;
 }

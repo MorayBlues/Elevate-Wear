@@ -1,25 +1,27 @@
 {% extends "base_admin.html" %}
 
 {% block content %}
+<div class="product_cards">
     {% for product in products %}
 
-    <div class="product_cards">
-      <div class="card_info">
         <div class="product">
           <p>Name: {{ product[1] }}</p>
           <p>Price: {{ product[2] }}</p>
-          <p>Category: {{ product[3] }}</p>
-          <p>Subcategory: {{ product[4] }}</p>
-          <img src="{{ product[5] }}" alt="{{ product[1] }}" />
+          <p>Category: {{ product[4] }}</p>
+          <p>Subcategory: {{ product[5] }}</p>
+          <p>Description: {{ product[3] }}</p>
+          <img src="{{ product[6] }}" alt="{{ product[1] }}" />
           <div class="btn">
           <a href="/admin/products/{{ product[0] }}/edit">Edit</a>
           </div>
-          <form action="/admin/products/{{ product[0] }}" method="post">
+          <form action="/admin/products/{{ product[0] }}" method="post" class="delete">
           <button type="submit">Delete</button>
           </form>
-        </div>
+          <button type="button" class="copy_caption_btn" data-name="{{ product[1] }}" data-price="{{ product[2] }}" data-description="{{ product[3] }}">
+            Copy Caption
+          </button>
       </div>
-    </div>
 
     {% endfor %}
-  {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,317 @@
+body {
+    font-family: var(--font-body);
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    line-height: 1.5;
+}
+/* Login Page CSS */
+
+body.login_page {
+    background-color: var(--color-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.login_form {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    color: var(--color-secondary);
+}
+.login_form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.login_form input:focus {
+    border-color: #c2570a;
+    outline: none;
+}
+.login_form button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.login_form button:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+
+.error {
+    color: #f41d05;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+ /* Navigation Bar CSS */
+
+ .admin_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border: 1px solid var(--color-secondary);
+    border-radius: 4px;
+    color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    margin-bottom: 1rem;
+ }
+
+ .nav_logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+ .nav_links {
+    display: flex;
+    gap: 1rem;
+ }
+.admin_nav a {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: var(--color-secondary);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem; 
+    transition: background-color 0.3s ease;
+}
+.admin_nav a:hover {
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+.nav_logo a:hover {
+    transition: transform none;
+}
+.nav_logout a{
+    background-color: #f41d05;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+.nav_logout a:hover {
+    background-color: #981304;
+    color: var(--color-secondary);
+}
+
+.hamburger {
+    display: none;
+}
+.hamburger i {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+}
+
+/* Products Listing CSS */
+
+.product_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem; 
+}
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    border: 1.5px solid var(--color-accent);
+    border-radius: 10px;
+    padding: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn, .delete {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn a {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    text-align: center; 
+    background-color: #c2570a;
+    color: var(--color-secondary);
+    transition: background-color 0.3s ease;
+}
+.btn a:hover {
+    background-color: #873c07;
+}
+.delete button {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    text-align: center; 
+    background-color: #f41d05;
+    color: var(--color-secondary);
+    transition: background-color 0.3s ease;
+}
+.delete button:hover {
+    background-color: #981304;
+}
+.product .copy_caption_btn {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    text-align: center;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    transition: background-color 0.3s ease;
+}
+.product .copy_caption_btn:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+
+/* Add products CSS */
+
+.add_product_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    min-height: 60vh;
+    text-align: start;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+}
+.add_product_form h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    align-self: center;
+    color: var(--color-accent);
+}
+.form_row {
+    display: flex;
+    gap: 1rem;
+}
+.form_field {
+    flex: 1;
+}
+.add_product_form label {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    display: block;
+ }
+.add_product_form input, textarea {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0.75rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.add_product_form input:focus, textarea:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+}
+textarea {
+    min-height: 75px;
+    resize: vertical;
+ }
+.add_product_form button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.add_product_form button:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+#add_variant_btn, #add_image_btn {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    align-self: center;
+}
+
+/* Footer CSS */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--color-secondary);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent);
+}
