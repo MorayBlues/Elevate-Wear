@@ -138,6 +138,45 @@ h1 {
     color: var(--color-secondary);
 }
 
+/* Dashboard CSS */
+
+.dashboard_stats{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+}
+.stat_card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem;
+    margin-right: 15rem;
+    margin-bottom: 2rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  
+}
+.stat_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+.stat_number {
+    font-size: 2rem;
+    font-weight: 550;
+    text-align: center;
+    color: var(--color-accent);
+}
+.stat_label {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: var(--color-secondary);
+}
+
 /* Products Listing CSS */
 
 .product_cards {
@@ -207,6 +246,235 @@ h1 {
     transition: background-color 0.3s ease;
 }
 .product .copy_caption_btn:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+
+/* Edit product CSS */
+
+.prefilled_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    min-height: 60vh;
+    text-align: start;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+}
+.prefilled_form h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    align-self: center;
+    color: var(--color-accent);
+}
+.form_row {
+    display: flex;
+    gap: 1rem;
+}
+ .prefilled_form label {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    display: block;
+ }
+ .prefilled_form input, textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.add_product_form input:focus, textarea:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+}
+.form_row select {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.form_row select:hover {
+    border-color: var(--color-primary);
+}
+.prefilled_form textarea {
+    min-height: 75px;
+    resize: vertical;
+ }
+
+.prefilled_form button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.prefilled_form button:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+
+/* Add order CSS */
+
+.add_order_form {
+     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    min-height: 60vh;
+    text-align: start;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+}
+.add_order_form h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    align-self: center;
+    color: var(--color-accent);
+}
+.form_row {
+    display: flex;
+    gap: 1rem;
+}
+.form_field {
+    flex: 1;
+}
+.add_order_form label {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    display: block;
+ }
+.add_order_form input, textarea {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0.75rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.add_order_form input:focus, textarea:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+}
+textarea {
+    min-height: 75px;
+    resize: vertical;
+ }
+.add_order_form button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.add_order_form button:hover {
+    background-color: #c2570a;
+    color: var(--color-secondary);
+}
+
+
+/* Orders CSS */
+
+.order_card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem; 
+}
+.order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #1a1a1a;
+    color: var(--color-secondary);
+    border: 1.5px solid var(--color-accent);
+    border-radius: 10px;
+    padding: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.order:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.order select {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+.order select:hover {
+    border-color: var(--color-primary);
+}
+.order button {
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    text-align: center;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    transition: background-color 0.3s ease;
+}
+.order button:hover {
     background-color: #c2570a;
     color: var(--color-secondary);
 }
@@ -294,6 +562,18 @@ textarea {
     max-width: 600px;
     margin-bottom: 2rem;
     align-self: center;
+}
+.success {
+    color: lawngreen;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+.error {
+    color: red;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 /* Footer CSS */

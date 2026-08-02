@@ -5,6 +5,7 @@ from auth import login_required
 from flask import session, redirect, url_for
 from flask import render_template
 from cloudinary_upload import upload_image
+from flask import jsonify
 import psycopg2
 from db import get_db
 admin = Blueprint('admin',__name__)
@@ -80,10 +81,10 @@ def add_product():
                 cur.execute("INSERT INTO variants(products_id, size, color, availability_flag) VALUES(%s, %s, %s, %s);", (product_id, size, color, True))
 
             conn.commit()
-            return redirect(url_for('admin.add_product', success = "Product added successfully!"))
+            return render_template('add-product.html', success="Product added successfully!")
         except psycopg2.Error as e:
             conn.rollback()
-            return f"Failed to add product: {e}"
+            return render_template('add-product.html', error="Failed to add product. Try again!")
     else:
         return render_template('add-product.html')
     
@@ -147,4 +148,47 @@ def edit_product(product_id):
                return redirect(url_for('admin.products_listing_view'))
           except psycopg2.Error as e:
             conn.rollback()
-            return f"Failed to Edit product: {e}"
+            return render_template('edit_product.html', error="Failed to Edit product.Try Again!")
+
+@admin.route('/admin/orders/add', methods=['GET', 'POST'])
+@login_required
+def add_order():
+     conn = get_db()
+     cur = conn.cursor()
+     cur.execute("SELECT id, name FROM products;")
+     products = cur.fetchall()
+     if request.method == 'POST':
+          customer_name = request.form['customer_name']
+          customer_phone = request.form['customer_phone']
+          number_of_items = request.form['number_of_items']
+          status = request.form['status']
+          product_name = request.form['product_name']
+          product_size = request.form['product_size']
+          product_color = request.form['product_color']
+          price_at_purchase = request.form['price_at_purchase']
+          try:
+               cur.execute("INSERT INTO orders (customer_name, customer_phone, number_of_items, status, product_name, product_size, product_color, price_at_purchase) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);", (customer_name, customer_phone, number_of_items, status, product_name, product_size, product_color, price_at_purchase))
+               conn.commit()
+               return render_template('add-order.html', products=products, success = "order added successfully!")
+          except psycopg2.Error as e:
+               conn.rollback()
+               return render_template('add-order.html', products=products, error="Failed to add order. Try Again!")
+     else:
+          return render_template('add-order.html', products=products)
+
+@admin.route('/admin/api/variants/<int:product_id>')
+@login_required
+def get_variants(product_id):
+     conn = get_db()
+     cur = conn.cursor()
+     cur.execute("SELECT variants.id, variants.size, variants.color, products.price FROM variants JOIN products ON variants.products_id = products.id WHERE variants.products_id = %s;", (product_id,))
+     results = cur.fetchall()
+     variants_list = []
+     for row in results:
+          variants_list.append({
+               'id': row[0],
+               'size': row[1],
+               'color': row[2],
+               'price': row[3]
+          })
+     return jsonify(variants_list)          

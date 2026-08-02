@@ -1,16 +1,19 @@
 {% extends "base_admin.html" %}
 
 {% block content %}
-    {% for order in orders %}
 
-    <div class="order_card">
-      <div class="card_info">
-        <div class="order">
-          <p>Order id:{{ order[0] }}</p>
-          <p>Variants id:{{ order[1] }}</p>
+<div class="order_card">
+    {% for order in orders %}
+      <div class="order">
+          <p>Order:{{ order[0] }}</p>
+          <p>Product Name:{{ order[7] }}</p>
+          <p>Price:{{ order[6] }}</p>
+          <p>Product Size:{{ order[8] }}</p>
+          <p>Product Color:{{ order[9] }}</p>
           <p>Customer Name:{{ order[2] }}</p>
           <p>Customer Phone:{{ order[3] }}</p>
           <p>Number Of Items:{{ order[4] }}</p>
+          <p>Time ordered:{{ order[10] }}</p>
           <form action="/admin/orders/{{ order[0] }}" method="post">
             <select name="status" id="status">
               <option value="pending" {% if order[5] == 'pending' %}selected{% endif %}>Pending</option>
@@ -20,14 +23,7 @@
             </select>
             <button type="submit">Update Status</button>
           </form>
-          <p>Price:{{ order[6] }}</p>
-          <p>Product Name:{{ order[7] }}</p>
-          <p>Product Size:{{ order[8] }}</p>
-          <p>Product Color:{{ order[9] }}</p>
-          <p>Time ordered:{{ order[10] }}</p>
-        </div>
       </div>
+       {% endfor %}
     </div>
-
-    {% endfor %}
  {% endblock %}

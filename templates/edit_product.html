@@ -3,20 +3,29 @@
 {% block content %}
     <div class="prefilled_form">
         <form action="/admin/products/{{ product[0] }}/edit" method="post">
-            Name:
-           <input type="text" name="name" id="name" value="{{ product[2] }}">
-           Price:
-           <input type="number" name="price" id="price" value="{{ product[3] }}">
-           Description:
-           <input type="text" name="description" id="description" value="{{ product[4] }}">
-            Categories Id:
-           <select name="categories_id">
-           {% for category in categories %}
-           <option value="{{ category[0] }}" {% if category[0] == product[5] %}selected{% endif %}>
-           {{ category[1] }} / {{ category[2] }}
+            <h1>Edit Product.</h1>
+           <div class="form_row">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="{{ product[2] }}">
+           </div>
+           <div class="form_row">
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" value="{{ product[3] }}">
+           </div>
+           <div class="form_row">
+            <label for="categories_id">Categories:</label>
+            <select name="categories_id">
+            {% for category in categories %}
+            <option value="{{ category[0] }}" {% if category[0] == product[5] %}selected{% endif %}>
+            {{ category[1] }} / {{ category[2] }}
            </option>
            {% endfor %}
            </select>
+           </div>
+           <div class="form_row">
+            <label for="description">Description:</label>
+            <textarea type="text" name="description" id="description" value="{{ product[4] }}"></textarea>
+           </div>
            <button type="submit">Save Changes</button>
         </form>
     </div>

@@ -3,6 +3,12 @@
 
 <div class="add_product_form">
   <h1>Add Products</h1>
+   {% if error %}
+     <p class="error">{{ error }}</p>
+  {% endif %}
+   {% if success %}
+     <p class="success">{{ success }}</p>
+  {% endif %}
   <form method="POST" enctype="multipart/form-data">
     <div class="form_row"> 
       <div class="form_field"> 

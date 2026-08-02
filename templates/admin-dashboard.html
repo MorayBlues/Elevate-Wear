@@ -2,14 +2,16 @@
 
 {% block content %}
 <div class="heading">
-    <h1>Welcome To Thread & Sole Dashboard</h1>
+    <h1>Welcome, To Elevate Ware Dashboard.</h1>
 </div>
-<div class="product_count">
-    <h2>Products On The Market</h2>
-        <p>{{ product_count }}</p>
-</div>
-<div class="pending_order_count">
-    <h2>Orders Awaiting Confirmation</h2>
-        <p>{{ pending_order_count}}</p>
+<div class="dashboard_stats">
+    <div class="stat_card">
+        <p class="stat_number">{{ pending_order_count}}</p>
+        <p class="stat_label">Pending Orders</p>
+    </div>
+    <div class="stat_card">
+        <p class="stat_number">{{ product_count }}</p>
+        <p class="stat_label">Products Listed</p>
+    </div>
 </div>
 {% endblock %}

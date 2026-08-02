@@ -1,0 +1,61 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<div class="add_order_form">
+  <h1>Add Order</h1>
+   {% if error %}
+     <p class="error">{{ error }}</p>
+  {% endif %}
+   {% if success %}
+     <p class="success">{{ success }}</p>
+  {% endif %}
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form_row">
+      <div class="form_field"> 
+        <label for="customer_name">Customer Name:</label> 
+        <input name="customer_name" id="customer_name"/><br />
+      </div>
+      <div class="form_field">
+        <label for="customer_phone">Customer_phone:</label>
+        <input name="customer_phone" id="customer_phone" /><br />
+      </div> 
+    </div> 
+    <div class="form_row">
+      <div class="form_field"> 
+        <label for="product_name">Product Name:</label> 
+        <select name="product_select" id="product_select">
+            {% for product in products %}
+            <option value="{{ product[0] }}" data-name="{{ product[1] }}">{{ product[1] }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <div class="form_field">
+        <label for="variants">Variants:</label>
+        <select name="variants" id="variants">
+            <option value="">Select a product first!</option>
+        </select>
+      </div>
+    </div>
+    <div class="form_row">
+      <div class="form_field">
+        <label for="number_of_items">Quantity:</label>
+        <input type="number" name="number_of_items" id="number_of_items" /><br />
+      </div>  
+      <div class="form_field">
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="pending">Pending</option>
+            <option value="contacted">Contacted</option>
+        </select>
+      </div>
+    </div>  
+     <button type="submit">Add Order</button>
+     <div class="hidden_inputs">
+        <input type="hidden" name="product_name" id="hidden_product_name" />
+        <input type="hidden" name="product_size" id="hidden_product_size" />
+        <input type="hidden" name="product_color" id="hidden_product_color" />
+        <input type="hidden" name="price_at_purchase" id="hidden_price" />
+     </div>
+   </form>
+</div>   
+{% endblock %}
