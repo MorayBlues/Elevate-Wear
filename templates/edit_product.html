@@ -12,9 +12,24 @@
             <label for="price">Price:</label>
             <input type="number" name="price" id="price" value="{{ product[3] }}">
            </div>
+
+        {% for variant in variants %}
+        <div class="variant_edit_row">
+            <input type="hidden" name="existing_variant_id[]" value="{{ variant[0] }}"> 
+            <label>Current Size:</label>
+            <input type="text" name="existing_size[]" value="{{ variant[2] }}">
+            <label>Current Color:</label>
+            <input type="text" name="existing_color[]" value="{{ variant[3] }}"> 
+            <label>Remove Variants</label>
+            <input type="checkbox" name="remove_{{ variant[0] }}">
+        </div> 
+        {% endfor %}
+           <div id="variant_rows">
+            <button type="button" id="add_variant_btn">Add Variant</button>
+           </div>
            <div class="form_row">
             <label for="categories_id">Categories:</label>
-            <select name="categories_id">
+            <select name="categories_id" id="categories_id">
             {% for category in categories %}
             <option value="{{ category[0] }}" {% if category[0] == product[5] %}selected{% endif %}>
             {{ category[1] }} / {{ category[2] }}

@@ -45,11 +45,9 @@
 
     <div class="product_thumbnails">
       {% for image in images %}
-        {% if not image[3] %}
           <div class="thumbnail">
             <img src="{{ image[2] }}" alt="product gallery image" class="img_thumbnail"/>
           </div>
-        {% endif %}
       {% endfor %}
     </div>
   </div>

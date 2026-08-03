@@ -88,14 +88,22 @@ h1 {
     margin-bottom: 1rem;
  }
 
- .nav_logo {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--color-secondary);
+ .brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     text-decoration: none;
-}
-
+ }
+ .brand_logo{
+    height: 52px;
+    width: 52px;
+ }
+ .brand_name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+ }
  .nav_links {
     display: flex;
     gap: 1rem;
@@ -118,11 +126,12 @@ h1 {
     transition: transform none;
 }
 .nav_logout a{
+    display: inline-flex;
     background-color: #f41d05;
     border-radius: 10px;
     padding: 0.5rem 1rem;
-    width: 50%;
     text-align: center;
+    margin-top: 1rem;
     transition: background-color 0.3s ease;
 }
 .nav_logout a:hover {
@@ -135,7 +144,7 @@ h1 {
 }
 .hamburger i {
     font-size: 1.5rem;
-    color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 /* Dashboard CSS */
@@ -340,6 +349,13 @@ h1 {
 .prefilled_form button:hover {
     background-color: #c2570a;
     color: var(--color-secondary);
+}
+
+input[type="checkbox"] {
+    width: 50px;
+    height: 20px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
 }
 
 /* Add order CSS */
@@ -594,4 +610,63 @@ footer {
     justify-content: center;
     align-items: center;
     color: var(--color-accent);
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 768px) {
+
+    /* Nav-bar media queries */
+
+    .admin_nav {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .nav_links {
+        display: none;
+    }
+    .nav_links.nav_open {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        z-index: 999;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Dashboard Media Queries */
+
+    .dashboard_stats{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15rem;
+    }
+    .heading h1 {
+        text-align: center;
+    }
+
+    /* form vertical alignment */
+
+    .form_row {
+        flex-direction: column;   
+    }
+    .form_field {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Footer Media Queries */
+
+    footer{
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
 }

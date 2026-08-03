@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elevate Ware, Admin</title>
+    <title>Elevate Wear, Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -15,7 +15,10 @@
 
         <div class="admin_nav">
             <div class="nav_logo">
-            <a href="/">Elevate Ware</a>
+            <a href="/" class="brand">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Elevate Wear Logo" class="brand_logo">
+                <span class="brand_name">Elevate Wear</span>
+            </a>
             </div>
         <button class="hamburger">
             <i class="fa-solid fa-bars"></i>
@@ -35,7 +38,7 @@
     {% block content %}{% endblock %}
 
     <footer>
-        <p class="copyright">&copy; 2026 Elevate Ware. All rights reserved.</p>
+        <p class="copyright">&copy; 2026 Elevate Wear. All rights reserved.</p>
     </footer>
 <script src="{{ url_for('static', filename='JS/admin.js') }}"></script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thread & Sole</title>
+    <title>Elevate Wear</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -14,10 +14,13 @@
 <body>
     <div class="user_nav">
         <div class="nav_logo">
-            <a href="/">Thread & Sole</a>
+            <p class="brand">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Elevate Wear Logo" class="brand_logo">
+                <span class="brand_name">Elevate Wear</span>
+            </p>
         </div>
         <button class="hamburger">
-                <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-bars"></i>
         </button>
         <div class="nav_links">
            <a href="/">Home</a>
@@ -33,7 +36,12 @@
     {% block content %}{% endblock %}
     <footer>
         <div class="footer_columns">
-        <div class="footer_logo">Thread & Sole</div>
+        <div class="footer_logo">
+            <p class="brand">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Elevate Wear Logo" class="brand_logo">
+                <span class="brand_name">Elevate Wear</span>
+            </p>
+        </div>
         <div class="footer_links">
             <h3>Navigation Links</h3>
            <a href="/">Home</a>
@@ -50,15 +58,15 @@
             <h3>Social Links</h3>
            <a href="#" class="social_link">
             <i class="fa-brands fa-tiktok"></i>
-            <span>@threadandsole</span>
+            <span>@elevatewear</span>
            </a>
            <a href="#" class="social_link">
             <i class="fa-brands fa-instagram"></i>
-            <span>@threadandsole</span>
+            <span>@elevatewear</span>
            </a>
         </div>
         </div>
-        <p class="copyright">&copy; 2026 Thread & Sole. All rights reserved.</p>
+        <p class="copyright">&copy; 2026 Elevate Wear. All rights reserved.</p>
     </footer>
     <script src="{{ url_for('static', filename='JS/user.js') }}"></script>
 </body>

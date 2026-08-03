@@ -16,13 +16,13 @@
         <input name="customer_name" id="customer_name"/><br />
       </div>
       <div class="form_field">
-        <label for="customer_phone">Customer_phone:</label>
+        <label for="customer_phone">Customer Phone:</label>
         <input name="customer_phone" id="customer_phone" /><br />
       </div> 
     </div> 
     <div class="form_row">
       <div class="form_field"> 
-        <label for="product_name">Product Name:</label> 
+        <label for="product_select">Product Name:</label> 
         <select name="product_select" id="product_select">
             {% for product in products %}
             <option value="{{ product[0] }}" data-name="{{ product[1] }}">{{ product[1] }}</option>

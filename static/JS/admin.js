@@ -1,3 +1,13 @@
+// Handling the hamburger menu
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav_links');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', function(){
+    navLinks.classList.toggle('nav_open');
+  });
+}
+
 // Copying product info in the Clipboard
 
 document.querySelectorAll(".copy_caption_btn").forEach(function (button) {
@@ -19,11 +29,11 @@ if (addVariantBtn) {
     const newRowHTML = `
     <div class="form_row">
         <div class="form_field">
-            <lable>Size:</lable>
-            <input name="size"[]">
+            <label>Size:</label>
+            <input name="size[]">
         </div>
         <div class="form_field">
-            <lable>Color:</lable>
+            <label>Color:</label>
             <input name="color[]">
         </div>
     </div>        
@@ -40,7 +50,7 @@ if (addImageBtn) {
   addImageBtn.addEventListener("click", function () {
     const newRowHTML = `
     <div class="form_row">
-            <lable>Image URL:</lable>
+            <label>Image URL:</label>
             <input type="file" name="image_file[]"/>
     </div>        
     `;

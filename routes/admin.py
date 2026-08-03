@@ -27,7 +27,7 @@ def login():
 @admin.route('/admin/logout')
 def logout():
     session.pop('admin_logged_in', None)
-    return render_template('index.html')
+    return redirect(url_for('customer.index'))
 
 @admin.route('/admin/dashboard')
 @login_required
@@ -135,15 +135,29 @@ def edit_product(product_id):
           product = cur.fetchone()
           cur.execute("SELECT * FROM categories;")
           categories = cur.fetchall()
-          return render_template('edit_product.html', product=product, categories=categories)
+          cur.execute("SELECT * FROM variants WHERE products_id = %s;",(product_id,))
+          variants = cur.fetchall()
+          return render_template('edit_product.html', product=product, categories=categories, variants=variants)
           
      else:
           name = request.form['name']
           price = request.form['price']
           description = request.form['description']
           categories_id = request.form['categories_id']
+          existing_ids = request.form.getlist('existing_variant_id[]')
+          existing_sizes = request.form.getlist('existing_size[]')
+          existing_colors = request.form.getlist('existing_color[]')
+          new_sizes = request.form.getlist('size[]')
+          new_colors = request.form.getlist('color[]')
           try:
                cur.execute("UPDATE products SET name = %s, price = %s, description = %s, categories_id = %s WHERE id = %s;",(name, price, description, categories_id, product_id))
+               for variant_id, size, color in zip(existing_ids, existing_sizes, existing_colors):
+                    if f'remove_{variant_id}' in request.form:
+                         cur.execute("DELETE FROM variants WHERE id = %s;", (variant_id,))
+                    else:
+                         cur.execute("UPDATE variants SET size = %s, color = %s WHERE id = %s;", (size, color, variant_id))   
+               for size, color in zip(new_sizes, new_colors):
+                    cur.execute("INSERT INTO variants(products_id, size, color, availability_flag) VALUES(%s, %s, %s, %s);", (product_id, size, color, True))           
                conn.commit()
                return redirect(url_for('admin.products_listing_view'))
           except psycopg2.Error as e:
