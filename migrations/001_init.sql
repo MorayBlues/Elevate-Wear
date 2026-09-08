@@ -20,5 +20,6 @@ CREATE TABLE admin_users(id SERIAL PRIMARY KEY, user_name VARCHAR(25) NOT NULL, 
 -- SELECT products.id, products.name, products.price, categories.category, categories.subcategory, images.image_url FROM products JOIN categories ON products.categories_id = categories.id JOIN images ON images.products_id = products.id WHERE images.is_cover = true ORDER BY products.id DESC LIMIT 4;
 
 -- SELECT user_name FROM admin_users;
-SELECT COUNT(*) FROM products;
-SELECT COUNT(*) FROM orders WHERE status = 'pending';
+-- SELECT COUNT(*) FROM products;
+-- SELECT COUNT(*) FROM orders WHERE status = 'pending';
+-- INSERT INTO admin_users (user_name, password_hash) VALUES ('Wanjiku', 'scrypt:32768:8:1$UMRV1RrBb4Wo38Ru$b89f73227220d1e041e318f9c67f222aa62ea30ae46efce86f0f853e2adfdc5a61985765da9498020962281a82d697ef086ec3709fcb5f73037ce225f2f9d');
