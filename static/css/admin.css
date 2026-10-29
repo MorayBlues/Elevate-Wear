@@ -42,7 +42,7 @@ h1 {
     transition: border-color 0.3s ease;
 }
 .login_form input:focus {
-    border-color: #c2570a;
+    border-color: var(--color-accent);
     outline: none;
 }
 .login_form button {
@@ -59,7 +59,7 @@ h1 {
     transition: background-color 0.3s ease;
 }
 .login_form button:hover {
-    background-color: #c2570a;
+    background-color: var(--color-accent);
     color: var(--color-secondary);
 }
 
@@ -226,7 +226,7 @@ h1 {
     padding: 0.5rem 1rem;
     width: 50%;
     text-align: center; 
-    background-color: #c2570a;
+    background-color: var(--color-accent);
     color: var(--color-secondary);
     transition: background-color 0.3s ease;
 }

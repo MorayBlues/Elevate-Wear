@@ -32,7 +32,7 @@ if (textButton) {
         const name = document.querySelector('#name').value;
         const message = document.querySelector('#message').value;
         const fullmessage = `Hello, my name is ${name}. ${message}`;
-        const url = `https://wa.me/254790261909?text=${encodeURIComponent(fullmessage)}`;
+        const url = `https://wa.me/254768274141?text=${encodeURIComponent(fullmessage)}`;
         window.location.href = url;
     });
 }

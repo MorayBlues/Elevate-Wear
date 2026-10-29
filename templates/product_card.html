@@ -1,0 +1,11 @@
+<article class="product">
+  <a class="product_media" href="/products/{{ product[0] }}">
+    <img src="{{ product[5] }}" alt="{{ product[1] }}" loading="lazy">
+  </a>
+  <div class="product_body">
+    <span class="product_cat">{{ product[3] }} · {{ product[4] }}</span>
+    <h3 class="product_name">{{ product[1] }}</h3>
+    <p class="price">KSh {{ "{:,.0f}".format(product[2]|float) }}</p>
+    <a class="view_btn" href="/products/{{ product[0] }}">View Details</a>
+  </div>
+</article>

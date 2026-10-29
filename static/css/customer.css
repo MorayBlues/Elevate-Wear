@@ -1,3 +1,17 @@
+/* Extra tokens used only on the customer side.
+   Update base.css :root to match (see notes):
+   --color-primary: #111111; --color-secondary: #F7F5F0; --color-accent: #2F4BFF; */
+:root {
+    --accent-dark: #1F37D6;
+    --accent-soft: #9AA8FF;   /* accent for use on dark backgrounds */
+    --line: #E3DFD6;
+    --muted: #6B6760;
+}
+
+body {
+    background-color: var(--color-secondary);
+}
+
 /* Home page CSS */
 .hero_banner {
     display: flex;
@@ -9,20 +23,35 @@
     background-color: var(--color-primary);
     color: var(--color-secondary);
     padding: 2rem;
+    /* To use a photo, uncomment and set the path:
+    background-image: linear-gradient(rgba(17,17,17,.55), rgba(17,17,17,.55)),
+                      url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    */
+}
+.hero_banner h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+}
+.hero_banner h3 {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
 }
 
 .btn {
     background-color: var(--color-accent);
-    color: var(--color-primary);
+    color: #FFFFFF;
     border-radius: 10px;
     padding: 0.75rem 1.5rem;
     font-size: 1.25rem;
-    font-weight: 400;
+    font-weight: 500;
     display: inline-block;
     transition: background-color 0.3s ease;
 }
 .btn:hover {
-    background-color: #d75f09;   
+    background-color: var(--accent-dark);
 }
 
 .featured_products, .products_cards {
@@ -54,22 +83,63 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
-    background-color: var(--color-secondary);
+    background-color: #FFFFFF;
     color: var(--color-primary);
-    border: 1.5px solid var(--color-accent);
+    border: 1px solid var(--line);
     border-radius: 10px;
     padding: 1rem;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.product:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.product a {
-    text-decoration: none;
+/* Product card (used by _product_card.html) */
+.product {
+    align-items: stretch;
+    text-align: left;
+    padding: 0;
+    gap: 0;
+    margin-bottom: 0;
+}
+.product:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08);
+}
+.product_media {
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: #EFECE5;
+    overflow: hidden;
+}
+.product_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.product:hover .product_media img {
+    transform: scale(1.03);
+}
+.product_body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    flex: 1;
+}
+.product_cat {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.product_name {
+    font-size: 1.15rem;
+}
+.product .price {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.product .view_btn {
+    margin-top: auto;
     background-color: var(--color-primary);
     color: var(--color-secondary);
     border-radius: 10px;
@@ -80,15 +150,36 @@
     padding: 0.75rem 1.5rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-.product a:hover {
+.product .view_btn:hover {
     background-color: var(--color-accent);
-} 
+    color: #FFFFFF;
+}
+
+/* Product detail: info card sits in the left column */
+.product_info_column .product {
+    align-items: flex-start;
+    padding: 1.25rem;
+    gap: 0.5rem;
+}
+.product_info_column .product:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--line);
+}
+.product_info_column .name {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+}
+.variant {
+    align-items: flex-start;
+}
 
 .product_cover {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 8px;
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--line);
+    background: #FFFFFF;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -116,18 +207,18 @@
     width: 72px;
     height: 72px;
     border-radius: 6px;
-    border: 2px solid var(--color-accent);
-    background-color: var(--color-secondary);
+    border: 2px solid var(--line);
+    background-color: #FFFFFF;
     overflow: hidden;
     cursor: pointer;
     transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
-.thumbnail:hover{
+.thumbnail:hover {
     border-color: var(--color-primary);
-    transform: translateY(-2px); 
+    transform: translateY(-2px);
 }
 .thumbnail.active {
-    border-color: var(--color-primary);
+    border-color: var(--color-accent);
     opacity: 1;
 }
 .thumbnail img {
@@ -150,25 +241,29 @@
     margin-bottom: 0.5rem;
 }
 
-.des{
+.des {
     font-size: 0.95rem;
     font-weight: 400;
     color: #555555;
     line-height: 1.6;
 }
 
+/* WhatsApp button: green is kept for the main order action */
 .whatsapp_button {
     display: inline-flex;
     align-items: center;
     background-color: #25D366;
-    color: var(--color-secondary);
+    color: var(--color-primary);
     border-radius: 10px;
     padding: 0.75rem 1.5rem;
     font-size: 1.25rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .whatsapp_button:hover {
-    background-color: #128C7E;
+    background-color: #1EBE5B;
 }
 i.fa-whatsapp {
     margin-right: 0.5rem;
@@ -233,11 +328,12 @@ i.fa-whatsapp {
 }
 .contact a:hover {
     background-color: var(--color-accent);
+    color: #FFFFFF;
 }
 
- /* Contacts Page CSS */
+/* Contacts Page CSS */
 
- .contact_layout {
+.contact_layout {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -249,13 +345,13 @@ i.fa-whatsapp {
     padding: 2rem;
     background-color: var(--color-secondary);
     color: var(--color-primary);
- }
+}
 
- .reach_out {
+.reach_out {
     display: flex;
     flex-direction: column;
-    gap: 1rem;  
- }
+    gap: 1rem;
+}
 
 .phone, .email, .social_link {
     display: flex;
@@ -263,13 +359,12 @@ i.fa-whatsapp {
     gap: 1rem;
     padding: 1rem;
     align-items: center;
-    background-color: var(--color-secondary);
+    background-color: #FFFFFF;
     color: var(--color-primary);
-    border: 1.5px solid var(--color-accent);
+    border: 1px solid var(--line);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0.5px 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -283,8 +378,8 @@ i.fa-whatsapp {
 
 .phone:hover, .email:hover, .social_link:hover {
     transform: translateY(-2px);
-    box-shadow: 0.5px 6px 8px rgba(0,0,0,0.2);
-    border-color: var(--color-primary);
+    box-shadow: 0 6px 16px rgba(17, 17, 17, 0.08);
+    border-color: var(--color-accent);
 }
 
 i.fa-instagram, i.fa-tiktok, i.fa-envelope, i.fa-phone {
@@ -297,107 +392,121 @@ i.fa-instagram, i.fa-tiktok, i.fa-envelope, i.fa-phone {
     color: #E1306C;
 }
 .social_link .fa-tiktok {
-    color: #25F4EE;
+    color: #111111;
 }
 
- label{
+label {
     font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
     display: block;
- }
+}
 
- input, textarea {
+input, textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--line);
     border-radius: 4px;
     font-size: 1rem;
     margin-bottom: 1rem;
-    background-color: var(--color-secondary);
+    background-color: #FFFFFF;
     color: var(--color-primary);
     transition: border-color 0.3s ease;
- }
- input:focus, textarea:focus {
+}
+input:focus, textarea:focus {
     outline: none;
-    border-color: var(--color-primary);
+    border-color: var(--color-accent);
+}
 
- }
-
- textarea {
+textarea {
     min-height: 150px;
     resize: vertical;
- }
+}
 
- /* Navigation Bar CSS */
+/* Navigation Bar CSS */
 
- .user_nav {
+.user_nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--color-accent);
-    border: 1px solid var(--color-primary);
-    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    background-color: #FFFFFF;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
     color: var(--color-primary);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 999;
     margin-bottom: 1rem;
- }
- .nav_links {
+}
+.nav_links {
     display: flex;
     gap: 1rem;
- }
-.user_nav a {
+}
+.user_nav .nav_links a {
     position: relative;
-    overflow: hidden;
-    z-index: 1;
     color: var(--color-primary);
     font-weight: 600;
-    padding: 0.75rem 1.5rem; 
-    transition: background-color 0.3s ease;
+    padding: 0.75rem 1.5rem;
 }
-.user_nav a::after {
+.user_nav .nav_links a::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--color-primary);
-    transition: width 0.3s ease;
-    z-index: -1;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 0.4rem;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
-.user_nav a:hover::after {
-    width: 100%;
-}
-.user_nav a:hover {
-    color: var(--color-secondary);
+.user_nav .nav_links a:hover::after {
+    transform: scaleX(1);
 }
 
-.nav_log .brand {
+.nav_logo .brand {
     display: flex;
     align-items: center;
     gap: 1rem;
     text-decoration: none;
- }
- .nav_logo .brand_logo{
-    height: 70px;
+    padding: 0;
+}
+.nav_logo .brand_logo {
+    height: 56px;
     width: auto;
     display: block;
- }
- .nav_logo .brand_name {
+}
+.nav_logo .brand_name {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-primary);
- }
+}
+
+.nav_phone .whatsapp_button {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    font-size: 1rem;
+    padding: 0.6rem 1.1rem;
+}
+.nav_phone .whatsapp_button i {
+    color: #25D366;
+}
+.nav_phone .whatsapp_button:hover {
+    background: var(--color-accent);
+    color: #FFFFFF;
+}
+.nav_phone .whatsapp_button:hover i {
+    color: #FFFFFF;
+}
 
 .hamburger {
     display: none;
+    background: none;
+    border: none;
 }
 .hamburger i {
     font-size: 1.5rem;
@@ -411,11 +520,9 @@ footer {
     flex-direction: column;
     background-color: var(--color-primary);
     color: var(--color-secondary);
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     text-align: center;
-    border: 1px solid var(--color-accent);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
 }
 .footer_columns {
     display: flex;
@@ -430,49 +537,55 @@ footer .brand {
     align-items: center;
     gap: 1rem;
     text-decoration: none;
- }
- footer .brand_logo{
+}
+footer .brand_logo {
     height: 70px;
     width: auto;
     display: block;
- }
- footer .brand_name {
+}
+footer .brand_name {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-secondary);
- }
+}
 
 .footer_links, .footer_contact, .footer_socials {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-    transition: color 0.3s ease;
 }
 .footer_links a, .footer_contact a, .footer_socials a {
     color: var(--color-secondary);
     transition: color 0.3s ease;
 }
 .footer_links a:hover, .footer_contact a:hover, .footer_socials a:hover {
-    color: var(--color-accent);
+    color: var(--accent-soft);
 }
 footer .social_link {
     display: flex;
     flex-direction: row;
-    background-color: #1a1a1a;
+    background-color: #1C1C1C;
+    color: var(--color-secondary);
     padding: 0.5rem;
     border: 1px solid #333;
+}
+footer .social_link i,
+footer .social_link .fa-tiktok,
+footer .social_link .fa-instagram {
+    color: var(--accent-soft);
 }
 .copyright {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5rem;
-    color: var(--color-accent);
+    margin-top: 1rem;
+    color: #A8A39A;
+    font-size: 0.9rem;
 }
 
-/* Mobile Respinsiveness */
+/* Mobile Responsiveness */
 
 @media (max-width: 768px) {
 
@@ -509,8 +622,8 @@ footer .social_link {
     }
 
     /* product-details Media queries */
-    
-    .product_layout{
+
+    .product_layout {
         display: flex;
         flex-direction: column;
     }
@@ -526,11 +639,13 @@ footer .social_link {
     }
     .nav_phone .whatsapp_button {
         margin-top: 1rem;
+        width: auto;
+        font-size: 1rem;
     }
 
     /* Footer Media Queries */
 
-    footer{
+    footer {
         flex-direction: column;
         align-items: flex-start;
     }

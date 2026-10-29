@@ -1,17 +1,14 @@
-{% extends "base_customer.html" %}
-
-{% block content %}
+{% extends "base_customer.html" %} {% block content %}
 
 <div class="product_layout">
   <div class="product_info_column">
     <div class="product_cards">
       <div class="card_info">
         <div class="product">
-          <h2 class="name">Name: {{ product[2] }}</h2>
-          <p class="price">Price: {{ product[3] }}</p>
-          <p class="cat">Category: {{ product[6] }}</p>
-          <p class="subcat">subcategory: {{ product[7] }}</p>
-          <p class="des">Description: {{ product[4] }}</p>
+          <span class="product_cat">{{ product[6] }} · {{ product[7] }}</span>
+          <h1 class="name">{{ product[2] }}</h1>
+          <p class="price">KSh {{ "{:,.0f}".format(product[3]|float) }}</p>
+          <p class="des">{{ product[4] }}</p>
         </div>
       </div>
     </div>
@@ -21,36 +18,40 @@
       <div class="variant">
         <p class="size">Size: {{ variant[2] }}</p>
         <p class="color">Color: {{ variant[3] }}</p>
-        <p class="available">Availability: {% if variant[4] %} In Stock {% else %} Out of Stock {% endif %}</p>
+        <p class="available">
+          Availability: {% if variant[4] %} In Stock {% else %} Out of Stock {%
+          endif %}
+        </p>
       </div>
-    {% endfor %} 
+      {% endfor %}
 
-    <a
-      href="https://wa.me/254790261909?text=Hello, I'm interested in {{ product[2] }}"
-      class="whatsapp_button"
-      ><i class="fa-brands fa-whatsapp"></i>Place An Order</a
-    >
-
+      <a
+        href="https://wa.me/254768274141?text=Hello, I'm interested in {{ product[2] }}"
+        class="whatsapp_button"
+        ><i class="fa-brands fa-whatsapp"></i>Place An Order</a
+      >
     </div>
   </div>
 
   <div class="product_image_column">
-    {% for image in images %}
-      {% if image[3] %}
-        <div class="product_cover">
-          <img src="{{ image[2] }}" alt="product cover image" class="img_fluid"/>
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% for image in images %} {% if image[3] %}
+    <div class="product_cover">
+      <img src="{{ image[2] }}" alt="product cover image" class="img_fluid" />
+    </div>
+    {% endif %} {% endfor %}
 
     <div class="product_thumbnails">
       {% for image in images %}
-          <div class="thumbnail">
-            <img src="{{ image[2] }}" alt="product gallery image" class="img_thumbnail"/>
-          </div>
+      <div class="thumbnail">
+        <img
+          src="{{ image[2] }}"
+          alt="product gallery image"
+          class="img_thumbnail"
+        />
+      </div>
       {% endfor %}
     </div>
   </div>
 </div>
 
-  {% endblock %}
+{% endblock %}
