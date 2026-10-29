@@ -1,3 +1,6 @@
+:root {
+    --color-accent: #FF6B00;
+}
 body {
     font-family: var(--font-body);
     color: var(--color-secondary);
